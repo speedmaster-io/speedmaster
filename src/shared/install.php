@@ -21,22 +21,22 @@ class SpeedMasterInstaller {
     @touch(SPEEDMASTER_CONFIG_FILE, 0777, true);
     file_put_contents(SPEEDMASTER_CONFIG_FILE, '{
   "cache": {
-    "enabled": false,
+    "enabled": true,
     "exclude": []
   },
   "optimizer": {
-    "enabled": false,
-    "combine_css": false,
-    "minify_css": false,
+    "enabled": true,
+    "combine_css": true,
+    "minify_css": true,
     "exclude_css": [],
 
-    "combine_js": false,
-    "minify_js": false,
+    "combine_js": true,
+    "minify_js": true,
     "footer_js": false,
     "exclude_js": [],
 
     "minify_html": false,
-    "disable_embed": false
+    "disable_embed": true
   },
   "cdn": {
     "enabled": false,
