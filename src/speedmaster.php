@@ -4,11 +4,9 @@ Plugin Name: Speedmaster
 Description: File system cache, CSS, JS and HTML minification, CDN and much more.
 Author: Speedmaster.io
 Author URI: https://speedmaster.io
-Version: 1.0.0
+Version: 0.0.1
 Text Domain: speedmaster
 */
-
-define( 'SPEEDMASTER_VERSION', '0.0.1' );
 
 // Load shared functions
 require_once('shared.php');
