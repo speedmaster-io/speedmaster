@@ -1,14 +1,26 @@
 <?php
 use MatthiasMullie\Minify;
 
+function remove_ver_from_combined( $src ) {
+  if ( strpos( $src, 'style.css' ) )
+      $src = remove_query_arg( 'ver', $src );
+  return $src;
+}
+
 function combine_css() {
   global $wp_styles;
+
+  add_filter( 'style_loader_src', 'remove_ver_from_combined', 9999 );
+  add_filter( 'script_loader_src', 'remove_ver_from_combined', 9999 );
 
   $exclude = SPEEDMASTER_OPTIMIZER_CONFIG['exclude_css'];
   $exclude = array_merge($exclude, ['admin']);
 
   $identifier = substr(md5(implode('-', $wp_styles->queue)), 0, 10) . ".style.css";
-  $content = speedmaster_load_buffer($identifier);
+  
+  $content = null;
+  if (SPEEDMASTER_CACHE_CONFIG['enabled'] == true)
+    $content = speedmaster_load_buffer($identifier);
 
   if (!$content) { 
     foreach( $wp_styles->queue as $handle ) {
@@ -16,7 +28,7 @@ function combine_css() {
         continue;
 
       $url = $wp_styles->registered[$handle]->src;
-      $content .= speedmaster_get_content($url);
+      $content .= speedmaster_get_content($url) . "\n";
     }
 
     $content = apply_filters('speedmaster_combined_css', $content);

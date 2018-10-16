@@ -54,3 +54,6 @@ A ```speedmaster.json``` file must be created in your ```SPEEDMASTER_DATA_DIR```
     "exclude": ["fonts"]
   }
 ```
+
+#### Todo
+- https://deliciousbrains.com/deploying-wordpress-plugins-travis/

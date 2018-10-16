@@ -7,36 +7,6 @@ function speedmaster_config($constant, $var) {
     return false;
 }
 
-function speedmaster_default_config_json() {
-return '{
-  "cache": {
-    "enabled": false,
-    "exclude": []
-  },
-  "optimizer": {
-    "enabled": false,
-    "combine_css": false,
-    "minify_css": false,
-    "exclude_css": [],
-
-    "combine_js": false,
-    "minify_js": false,
-    "footer_js": true,
-    "exclude_js": [],
-
-    "minify_html": false,
-    "disable_embed": false
-  },
-  "cdn": {
-    "enabled": false,
-    "hosts": ["'.site_url().'"],
-    "url": "http://cdn.mywebsite.com/",
-    "include": [],
-    "exclude": []
-  }
-}';
-}
-
 function speedmaster_array_match($matches, $haystack) {
   foreach ($matches as $needle) {
     if (strpos($haystack, $needle) !== false) {

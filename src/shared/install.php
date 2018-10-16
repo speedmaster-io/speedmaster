@@ -4,25 +4,60 @@ class SpeedMasterInstaller {
     // Create directories if they do not exists.
     if (!file_exists(SPEEDMASTER_DATA_DIR)) { mkdir(SPEEDMASTER_DATA_DIR, 0777, true); }
     if (!file_exists(SPEEDMASTER_CACHE_DIR)) { mkdir(SPEEDMASTER_CACHE_DIR, 0777, true); }
-    if (!file_exists(SPEEDMASTER_ADVANCED_CACHE_FILE)) { touch(SPEEDMASTER_ADVANCED_CACHE_FILE, 0777, true); }
 
-    $this->updateSpeedmasterConfig();
-    $this->updateConfigFile();
+    $this->create_speedmaster_files();
+    $this->enableCacheInWpConfig();
   }
 
-  function updateSpeedmasterConfig() {
+  function create_speedmaster_files() {
     if (file_exists(SPEEDMASTER_CONFIG_FILE) === false) {
-      $this->reCreateConfig();
+      $this->recreate_speedmaster_json();
     }
+
+    $this->recreate_advanced_cache_file();
   }
 
-  private function reCreateConfig() {
-    $json = speedmaster_default_config_json();
+  private function recreate_speedmaster_json() {
     @touch(SPEEDMASTER_CONFIG_FILE, 0777, true);
-    file_put_contents(SPEEDMASTER_CONFIG_FILE, $json);
+    file_put_contents(SPEEDMASTER_CONFIG_FILE, '{
+  "cache": {
+    "enabled": false,
+    "exclude": []
+  },
+  "optimizer": {
+    "enabled": false,
+    "combine_css": false,
+    "minify_css": false,
+    "exclude_css": [],
+
+    "combine_js": false,
+    "minify_js": false,
+    "footer_js": false,
+    "exclude_js": [],
+
+    "minify_html": false,
+    "disable_embed": false
+  },
+  "cdn": {
+    "enabled": false,
+    "hosts": ["'.site_url().'"],
+    "url": "http://cdn.mywebsite.com/",
+    "include": [],
+    "exclude": []
+  }
+}');
   }
 
-  function updateConfigFile() {
+  private function recreate_advanced_cache_file() {
+    @touch(SPEEDMASTER_ADVANCED_CACHE_FILE, 0777, true);
+    file_put_contents(SPEEDMASTER_ADVANCED_CACHE_FILE, "<?php
+// Created by Speedmaster
+defined( 'ABSPATH' ) or die( 'Cheatin\' uh?' );
+define( 'SPEEDMASTER_ACTIVATED', true );
+require_once( '".SPEEDMASTER_PLUGIN_DIR."/boot.php');");
+  }
+
+  function enableCacheInWpConfig() {
     // Update config file
     if (file_exists(SPEEDMASTER_WP_CONFIG_FILE)) {
       require_once(SPEEDMASTER_LIB_DIR . 'wp-config-transformer.php');
