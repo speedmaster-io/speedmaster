@@ -1,4 +1,6 @@
 # Speedmaster dev
+[![Build Status](https://travis-ci.org/speedmaster-io/speedmaster.svg?branch=master)](https://travis-ci.org/speedmaster-io/speedmaster)
+
 This repository is for development use only. If you're looking for a version of Speedmaster that you can install on your website, please download the latest version directly from the [Wordpress plugin directory](https://wordpress.org/plugins/speedmaster/).
 
 ## Getting started
