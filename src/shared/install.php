@@ -26,16 +26,16 @@ class SpeedMasterInstaller {
   },
   "optimizer": {
     "enabled": true,
-    "combine_css": true,
-    "minify_css": true,
+    "combine_css": false,
+    "minify_css": false,
     "exclude_css": [],
 
-    "combine_js": true,
-    "minify_js": true,
+    "combine_js": false,
+    "minify_js": false,
     "footer_js": false,
     "exclude_js": [],
 
-    "minify_html": false,
+    "minify_html": true,
     "disable_embed": true
   },
   "cdn": {
