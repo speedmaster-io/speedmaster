@@ -17,11 +17,10 @@ if (!defined('SPEEDMASTER_DISABLED')) {
 
   require_once( SPEEDMASTER_INC_DIR . 'buffer.php' ); 
 
-  if (is_admin()) {
+  if (speedmaster_is_logged_in() === true) {
     // Load admin panels and actions
     require_once( SPEEDMASTER_ADMIN_DIR . 'settings-page.php' );
     require_once( SPEEDMASTER_ADMIN_DIR . 'toolbar.php' );
-    require_once( SPEEDMASTER_ADMIN_DIR . '_delete-cache.php' );
 
   } else {
     // Load front-end generators (functions)
