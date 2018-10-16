@@ -2,6 +2,9 @@ language: ruby
 services:
   - docker
 install:
-  - docker-compose up
+  - docker-compose up -d
 script:
   - docker-compose ps
+after_script:
+  - docker-compose stop
+  - docker-compose rm -f
