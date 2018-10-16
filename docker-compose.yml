@@ -1,0 +1,30 @@
+version: '3.1'
+services:
+  wordpress:
+    build: .
+    restart: always
+    ports:
+      - 8080:80
+    environment:
+      ROOT_URL: 'http://localhost:8080'
+      WORDPRESS_DB_NAME: wordpress
+      WORDPRESS_DB_USER: root
+      WORDPRESS_DB_PASSWORD: secret
+      WORDPRESS_DB_HOST: mysql
+      WORDPRESS_DEBUG: 1
+    depends_on:
+      - mysql
+    volumes:
+      - ./src:/var/www/html/wp-content/plugins/speedmaster/
+      - ./uploads:/var/www/html/wp-content/uploads/
+  mysql:
+    image: mysql:5.7
+    restart: always
+    ports:
+      - 3308:3306
+    volumes:
+      - mysql:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: secret
+volumes:
+  mysql:
