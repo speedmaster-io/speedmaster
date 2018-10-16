@@ -9,7 +9,10 @@ This repository is for development use only. If you're looking for a version of 
 ### Run the development environment
 ```cd``` into this directory and run ```docker-compose up```
 
-*You'll need Docker installed on your system to run a full development server. However, if that is not your thing, just copy & paste all files from ```src/``` in this repo to ```<website-path>/wp-content/plugins/speedmaster/``` on your development server. When your done, copy your changes back to this repo and create a pull request.*
+*You'll need Docker installed on your system to run a full development server. However, if that's not your thing, just copy & paste all files from ```src/``` in this repo to ```<website-path>/wp-content/plugins/speedmaster/``` on your development server. When your done, copy your changes back to this repo and create a pull request.*
+
+### Install Wordpress
+When docker-compose is up and running, visit [https://localhost:8080](https://localhost:8080) in your browser and follow the Wordpress tutorial to install your site and create an admin user.
 
 ## Features
 - Cache pages as HTML and return pre-rendered static pages for visitors.
