@@ -66,8 +66,8 @@ require_once( '".SPEEDMASTER_PLUGIN_DIR."/boot.php');");
         'raw' => true, 
         'normalize' => true, 
         'anchor' => '<?php', 
-        'placement' => 'before', 
-        'separator' => PHP_EOL . PHP_EOL, 
+        'placement' => 'after', 
+        'separator' => PHP_EOL, 
         'add' => true ) 
       );
     }
