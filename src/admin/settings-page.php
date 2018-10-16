@@ -1,55 +1,8 @@
 <?php
 add_action( 'admin_menu', 'speedmaster_admin_menu' );
 
-function speedmaster_display_status($status) {
-  if ($status) {
-    return 'Enabled <span class="ab-icon dashicons dashicons-yes"></span>';
-  } else {
-    return 'Disabled <span class="ab-icon dashicons dashicons-no"></span>';
-  }
-}
-
 function speedmaster_admin_menu() {
   add_menu_page( 'Speedmaster - Status', 'Speedmaster', 'manage_options', 'speedmaster-dashboard.php', 'speedmaster_admin_page', 'dashicons-smiley', 101);
-}
-
-function speedmaster_setting_class( $value ) {
-  if ($value === true) {
-    return 'enabled';
-  } else {
-    return 'disabled';
-  }
-}
-
-function speedmaster_is_writable_icon( $path ) {
-  if (file_exists($path) && wp_is_writable($path) === true)
-    return '<span style="color:green">ok <span class="dashicons dashicons-yes"></span></span>';
-
-  return '<span style="color:red">failed <span class="dashicons dashicons-no"></span></span>';
-}
-
-function speedmaster_constant_is_icon( $constant, $expected ) {
-
-  if (defined($constant) && constant($constant) == $expected)
-    return '<span style="color:green">ok <span class="dashicons dashicons-yes"></span></span>';
-
-  return '<span style="color:red">failed <span class="dashicons dashicons-no"></span></span>';
-}
-
-function speedmaster_print_url( $url ) {
-  if ($url) {
-    return $url;
-  } else {
-    return "<em>None</em>";
-  }
-}
-
-function speedmaster_print_array( $array ) {
-  if (count($array) > 0) {
-    return implode(', ', $array);
-  } else {
-    return "<em>None</em>";
-  }
 }
 
 function speedmaster_admin_page() {
@@ -240,17 +193,17 @@ function speedmaster_admin_page() {
             <tr>
               <td>Configuration file exists &amp; is writable</td>
               <td><?php echo speedmaster_is_writable_icon(SPEEDMASTER_CONFIG_FILE); ?></td>
-              <td><a href="javascript:alert('Documentation not ready yet. Feel free to contribute to our repo ;)');"><span class="dashicons dashicons-info"></span> Create the config file</a></td>
+              <td><a href="javascript:alert('Documentation not ready yet. Feel free to contribute to our repo ;)');"><span class="dashicons dashicons-info"></span> File permissions</a></td>
+            </tr>
+            <tr>
+              <td><em>advanced-cache.php</em> exists &amp; is writable</td>
+              <td><?php echo speedmaster_is_writable_icon(SPEEDMASTER_ADVANCED_CACHE_FILE); ?></td>
+              <td><a href="javascript:alert('Documentation not ready yet. Feel free to contribute to our repo ;)');"><span class="dashicons dashicons-info"></span> File permissions</a></td>
             </tr>
             <tr>
               <td>WP_CACHE constant is set to <em>true</em></td>
               <td><?php echo speedmaster_constant_is_icon('WP_CACHE', true); ?></td>
               <td><a href="javascript:alert('Documentation not ready yet. Feel free to contribute to our repo ;)');"><span class="dashicons dashicons-info"></span> Configuration tutorial</a></td>
-            </tr>
-            <tr>
-              <td><em>advanced-cache.php</em> exists &amp; is writable</td>
-              <td><?php echo speedmaster_is_writable_icon(ABSPATH . 'wp-content/advanced-cache.php'); ?></td>
-              <td><a href="javascript:alert('Documentation not ready yet. Feel free to contribute to our repo ;)');"><span class="dashicons dashicons-info"></span> Create the config file</a></td>
             </tr>
           </tbody>
         </table>

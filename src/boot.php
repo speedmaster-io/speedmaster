@@ -1,4 +1,9 @@
 <?php
+/*
+ * BOOT file
+ * Code in this file will be loaded before Wordpress CORE and databases are loaded.
+*/
+
 // Load shared functions
 require_once('shared.php');
 

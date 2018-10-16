@@ -1,9 +1,8 @@
 <?php
 /*
 Plugin Name: Speedmaster
-Plugin URI: https://speedmaster.io
 Description: File system cache, CSS, JS and HTML minification, CDN and much more.
-Author: Rasmus Kjellberg
+Author: Speedmaster.io
 Author URI: https://speedmaster.io
 Version: 1.0.0
 Text Domain: speedmaster
@@ -13,6 +12,7 @@ define( 'SPEEDMASTER_VERSION', '0.0.1' );
 
 // Load shared functions
 require_once('shared.php');
+require_once('shared/install.php');
 
 // Buffer HTML that we can filter
 if (!defined('SPEEDMASTER_DISABLED')) { 
