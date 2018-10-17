@@ -29,6 +29,14 @@ function speedmaster_is_logged_in() {
   return false;
 }
 
+function speedmaster_get_cached_files() {
+  return glob( SPEEDMASTER_CACHE_DIR."{,.}[!.,!..]*", GLOB_MARK | GLOB_BRACE );
+}
+
+function speedmaster_count_cached_files() {
+  return count( speedmaster_get_cached_files() );
+}
+
 // Buffer functions
 function speedmaster_generate_identifier() {
   $string = $_SERVER['REQUEST_URI'];
@@ -61,7 +69,7 @@ function speedmaster_purge_buffer() {
     return;
 
   try {
-    $files = glob(SPEEDMASTER_CACHE_DIR."*.cache"); // get all file names
+    $files = speedmaster_get_cached_files(); // get all file names
     foreach($files as $file){ // iterate files
       unlink($file);
     }

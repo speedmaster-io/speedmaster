@@ -1,23 +1,39 @@
 <?php
 class SpeedMasterInstaller {
   public function run() {
-    // Create directories if they do not exists.
-    if (!file_exists(SPEEDMASTER_DATA_DIR)) { mkdir(SPEEDMASTER_DATA_DIR, 0777, true); }
-    if (!file_exists(SPEEDMASTER_CACHE_DIR)) { mkdir(SPEEDMASTER_CACHE_DIR, 0777, true); }
+    $this->recreate_data_dir();
+    $this->recreate_cache_dir();
 
-    $this->create_speedmaster_files();
-    $this->enableCacheInWpConfig();
-  }
-
-  function create_speedmaster_files() {
-    if (file_exists(SPEEDMASTER_CONFIG_FILE) === false) {
-      $this->recreate_speedmaster_json();
-    }
-
+    $this->recreate_config_file();
     $this->recreate_advanced_cache_file();
+    $this->update_wpconfig_var_to('true');
   }
 
-  private function recreate_speedmaster_json() {
+  public function uninstall() {
+    $this->update_wpconfig_var_to('false');
+
+    speedmaster_purge_buffer();
+    unlink(SPEEDMASTER_ADVANCED_CACHE_FILE);
+  }
+
+  private function recreate_data_dir() {
+    if (file_exists(SPEEDMASTER_DATA_DIR))
+      return;
+    
+    mkdir(SPEEDMASTER_DATA_DIR, 0777, true);
+  }
+
+  private function recreate_cache_dir() {
+    if (file_exists(SPEEDMASTER_CACHE_DIR))
+      return;
+    
+    mkdir(SPEEDMASTER_CACHE_DIR, 0777, true);
+  }
+
+  private function recreate_config_file() {
+    if (file_exists(SPEEDMASTER_CONFIG_FILE))
+      return;
+
     @touch(SPEEDMASTER_CONFIG_FILE, 0777, true);
     file_put_contents(SPEEDMASTER_CONFIG_FILE, '{
   "cache": {
@@ -48,7 +64,7 @@ class SpeedMasterInstaller {
 }');
   }
 
-  private function recreate_advanced_cache_file() {
+  private function recreate_advanced_cache_file() { 
     @touch(SPEEDMASTER_ADVANCED_CACHE_FILE, 0777, true);
     file_put_contents(SPEEDMASTER_ADVANCED_CACHE_FILE, "<?php
 // Created by Speedmaster
@@ -57,12 +73,12 @@ define( 'SPEEDMASTER_ACTIVATED', true );
 require_once( '".SPEEDMASTER_PLUGIN_DIR."/boot.php');");
   }
 
-  function enableCacheInWpConfig() {
+  function update_wpconfig_var_to($value = 'true') {
     // Update config file
     if (file_exists(SPEEDMASTER_WP_CONFIG_FILE)) {
       require_once(SPEEDMASTER_LIB_DIR . 'wp-config-transformer.php');
       $config = new WPConfigTransformer( SPEEDMASTER_WP_CONFIG_FILE );
-      $config->update( 'constant', 'WP_CACHE', 'true', array( 
+      $config->update( 'constant', 'WP_CACHE', $value, array( 
         'raw' => true, 
         'normalize' => true, 
         'anchor' => '<?php', 
@@ -73,6 +89,3 @@ require_once( '".SPEEDMASTER_PLUGIN_DIR."/boot.php');");
     }
   }
 }
-
-$installer = new SpeedMasterInstaller;
-$installer->run();

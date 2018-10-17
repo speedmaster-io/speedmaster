@@ -31,6 +31,14 @@ function speedmaster_admin_page() {
       'enabled' => SPEEDMASTER_OPTIMIZER_CONFIG['enabled']
     ],
 
+   [ 
+      'name' => 'Minify HTML',
+      'setting' => "optimizer:minify_html",
+      'value' => speedmaster_display_status((SPEEDMASTER_OPTIMIZER_CONFIG['enabled'] && SPEEDMASTER_OPTIMIZER_CONFIG['minify_html'])),
+      'tag' => 'td',
+      'enabled' => (SPEEDMASTER_OPTIMIZER_CONFIG['enabled'] && SPEEDMASTER_OPTIMIZER_CONFIG['minify_html'])
+    ],
+    
     [ 
       'name' => 'Combine CSS files into one',
       'setting' => "optimizer:combine_css",
@@ -66,14 +74,6 @@ function speedmaster_admin_page() {
       'value' => speedmaster_display_status((SPEEDMASTER_OPTIMIZER_CONFIG['enabled'] && SPEEDMASTER_OPTIMIZER_CONFIG['footer_js'])),
       'tag' => 'td',
       'enabled' => (SPEEDMASTER_OPTIMIZER_CONFIG['enabled'] && SPEEDMASTER_OPTIMIZER_CONFIG['footer_js'])
-    ],
-
-    [ 
-      'name' => 'Minify HTML',
-      'setting' => "optimizer:minify_html",
-      'value' => speedmaster_display_status((SPEEDMASTER_OPTIMIZER_CONFIG['enabled'] && SPEEDMASTER_OPTIMIZER_CONFIG['minify_html'])),
-      'tag' => 'td',
-      'enabled' => (SPEEDMASTER_OPTIMIZER_CONFIG['enabled'] && SPEEDMASTER_OPTIMIZER_CONFIG['minify_html'])
     ],
     [ 
       'name' => 'Disable Embed & Emojis',
@@ -156,7 +156,7 @@ function speedmaster_admin_page() {
           <tbody>
             <tr>
               <td>Number of cached pages</td>
-              <td><?php echo count(glob(SPEEDMASTER_CACHE_DIR."*.cache")); ?></td>
+              <td><?php echo speedmaster_count_cached_files(); ?></td>
             </tr>
             <tr>
               <td>Cached CSS</td>

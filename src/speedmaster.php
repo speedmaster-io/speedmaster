@@ -10,7 +10,24 @@ Text Domain: speedmaster
 
 // Load shared functions
 require_once('shared.php');
-require_once('shared/install.php');
+
+register_activation_hook( __FILE__, 'speedmaster_activation_hook' );
+function speedmaster_activation_hook() {
+  // Load installer class
+  require_once('installer.php');
+
+  $installer = new SpeedMasterInstaller;
+  $installer->run();
+}
+
+register_deactivation_hook( __FILE__, 'speedmaster_deactivation_hook' );
+function speedmaster_deactivation_hook() {
+  // Load installer class
+  require_once('installer.php');
+
+  $installer = new SpeedMasterInstaller;
+  $installer->uninstall();
+}
 
 // Buffer HTML that we can filter
 if (!defined('SPEEDMASTER_DISABLED')) { 
