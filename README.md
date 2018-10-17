@@ -31,30 +31,31 @@ A ```speedmaster.json``` file must be created in your ```SPEEDMASTER_DATA_DIR```
 ```json
 {
   "cache": {
-    "enabled": false,
+    "enabled": true,
     "exclude": []
   },
   "optimizer": {
     "enabled": true,
     "combine_css": false,
     "minify_css": false,
-    "exclude_css": ["font-awesome"],
+    "exclude_css": [],
 
     "combine_js": false,
     "minify_js": false,
     "footer_js": false,
     "exclude_js": [],
 
-    "minify_html": false,
-    "disable_embed": false
+    "minify_html": true,
+    "disable_embed": true
   },
   "cdn": {
     "enabled": false,
-    "hosts": ["http://mywebsite.com/"],
+    "hosts": ["http://localhost:8080"],
     "url": "http://cdn.mywebsite.com/",
-    "include": ["uploads"],
-    "exclude": ["fonts"]
+    "include": [],
+    "exclude": []
   }
+}
 ```
 
 #### Todo
