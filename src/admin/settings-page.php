@@ -201,14 +201,14 @@ function speedmaster_admin_page() {
               <td><a href="javascript:alert('Documentation not ready yet. Feel free to contribute to our repo ;)');"><span class="dashicons dashicons-info"></span> File permissions</a></td>
             </tr>
             <tr>
-              <td>WP_CACHE constant is set to <em>true</em></td>
-              <td><?php echo speedmaster_constant_is_icon('WP_CACHE', true); ?></td>
-              <td><a href="javascript:alert('Documentation not ready yet. Feel free to contribute to our repo ;)');"><span class="dashicons dashicons-info"></span> Configuration tutorial</a></td>
-            </tr>
-            <tr>
               <td><em>advanced-cache.php</em> exists &amp; is writable</td>
               <td><?php echo speedmaster_is_writable_icon(SPEEDMASTER_ADVANCED_CACHE_FILE); ?></td>
               <td><a href="javascript:alert('Documentation not ready yet. Feel free to contribute to our repo ;)');"><span class="dashicons dashicons-info"></span> File permissions</a></td>
+            </tr>
+            <tr>
+              <td>WP_CACHE constant is set to <em>true</em></td>
+              <td><?php echo speedmaster_constant_is_icon('WP_CACHE', true); ?></td>
+              <td><a href="javascript:alert('Documentation not ready yet. Feel free to contribute to our repo ;)');"><span class="dashicons dashicons-info"></span> Configuration tutorial</a></td>
             </tr>
           </tbody>
         </table>

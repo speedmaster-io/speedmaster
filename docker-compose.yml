@@ -1,6 +1,6 @@
 version: '3.1'
 services:
-  wordpress:
+  wp:
     build: .
     restart: always
     ports:
