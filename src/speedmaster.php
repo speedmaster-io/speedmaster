@@ -1,7 +1,7 @@
 <?php
 /*
 Plugin Name: Speedmaster
-Description: File system cache, CSS, JS and HTML minification, CDN and much more.
+Description: File system cache, CSS, JS, HTML combine & minify, CDN and much more.
 Author: Speedmaster.io
 Author URI: https://speedmaster.io
 Version: 0.0.1

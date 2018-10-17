@@ -13,6 +13,6 @@ COPY ./tests/speedmaster-test-theme/ /usr/src/wordpress/wp-content/themes/speedm
 WORKDIR /tmp
 RUN curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
 RUN chmod +x wp-cli.phar
-RUN mv wp-cli.phar /usr/bin/wp
+RUN mv wp-cli.phar /usr/bin/cli
 
 WORKDIR /var/www/html
