@@ -17,6 +17,7 @@ services:
     volumes:
       - ./src:/var/www/html/wp-content/plugins/speedmaster/
       - ./uploads:/var/www/html/wp-content/uploads/
+      - ./tests/speedmaster-test-theme/:/var/www/html/wp-content/themes/speedmaster-test
   mysql:
     image: mysql:5.7
     restart: always

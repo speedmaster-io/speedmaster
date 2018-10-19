@@ -5,3 +5,7 @@
  * Textdomain: speedmaster
  * Version: 0.0.1
 */
+
+body {
+  padding-top: 60px;
+}

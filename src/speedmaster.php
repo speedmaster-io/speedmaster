@@ -64,6 +64,8 @@ if (!defined('SPEEDMASTER_DISABLED')) {
 
     if ($smconfig->get('optimizer', 'enabled')) {
       require_once SPEEDMASTER_MODULES_DIR . 'optimizer/minify-html.php';
+      require_once SPEEDMASTER_MODULES_DIR . 'optimizer/disable-emojis.php';
+      require_once SPEEDMASTER_MODULES_DIR . 'optimizer/disable-embed.php';
     }
     
   }

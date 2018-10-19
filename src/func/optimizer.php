@@ -115,12 +115,6 @@ function speedmaster_combine_css_and_js() {
 
 function speedmaster_minify_css_and_js() {
 
-  if ( speedmaster_config('SPEEDMASTER_OPTIMIZER_CONFIG', 'disable_embed') ) {
-    add_action( 'wp_footer', function() {
-      wp_dequeue_script( 'wp-embed' );
-    });
-  }
-
   if ( speedmaster_config('SPEEDMASTER_OPTIMIZER_CONFIG', 'minify_css') ) {
     add_filter('speedmaster_combined_css', function($css) {
       $minifier = new Minify\CSS($css);

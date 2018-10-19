@@ -1,6 +1,11 @@
 <?php
 use MatthiasMullie\Minify;
 
+// Check Speedmaster configuration
+if ($smconfig->get('optimizer', 'minify_html')) {
+  add_filter('speedmaster_buffer', 'speedmaster_minify_html');
+}
+
 /*
  * Minify HTML
  * Speedmaster Optimizer
@@ -10,13 +15,7 @@ use MatthiasMullie\Minify;
 function speedmaster_minify_html($html) {
   global $smconfig;
 
-  if ($smconfig->get('optimizer', 'minify_html')) {
-    // Return minified HTML if set to true
-    return minify_html($html);
-  } else {
-    // Else return normal HTML
-    return $html;
-  }
+  // Return minified HTML if set to true
+  return minify_html($html);
 }
 
-add_filter('speedmaster_buffer', 'speedmaster_minify_html');

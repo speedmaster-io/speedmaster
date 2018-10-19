@@ -26,16 +26,17 @@ function speedmaster_end_buffer() {
   // Calculate how long time it to to optimize page.
   $time_after = microtime(true);
 
-  // Return and nothing if cache isn't enabled
-  if (! $smconfig->get('cache', 'enabled') ) {
-    echo $filtered_buffer;
-    return;
-  }
-
-  $saved_time = round($time_after - SPEEDMASTER_BUFFER_TIMESTAMP_START,3);
-  $identifier = speedmaster_generate_identifier();
-
-  if ( isset( $wp_query ) && !is_user_logged_in() && !empty($filtered_buffer) && (is_page() || is_front_page() || is_single() || is_archive()) && defined('SPEEDMASTER_CACHE') && SPEEDMASTER_CACHE == true ) {
+  if ( 
+    $smconfig->get('cache', 'enabled') &&
+    isset( $wp_query ) && 
+    !is_user_logged_in() && 
+    !empty($filtered_buffer) && 
+    (is_page() || is_front_page() || is_single() || is_archive())
+  ) {
+    // Save buffer to file if cache is enabled.
+    $saved_time = round($time_after - SPEEDMASTER_BUFFER_TIMESTAMP_START,3);
+    $identifier = speedmaster_generate_identifier();
+    
     speedmaster_save_buffer($identifier, $filtered_buffer . "\n" . '<!-- Speedmaster just saved you '.$saved_time.' second(s). -->');
   }
 
