@@ -10,21 +10,27 @@ define( 'SPEEDMASTER_BUFFER_TIMESTAMP_START', microtime(true));
 
 function speedmaster_end_buffer() {
   global $wp_query;
+  global $smconfig;
 
   $buffer = '';
 
-  // We'll need to get the number of ob levels we're in, so that we can iterate over each, collecting
-  // that buffer's output into the final output.
+  // Get all output buffer and store it in a variable.
   $buffer = ob_get_clean();
 
-  // for ($i = 0; $i < $levels; $i++) {
-  //   $buffer .= ob_get_clean();
-  // }
+  // Calculate how long time it takes to generate a page.
+  $time_before = microtime(true);
 
   // Apply any filters to the final output
-  $time_before = microtime(true);
   $filtered_buffer = apply_filters('speedmaster_buffer', $buffer);
+
+  // Calculate how long time it to to optimize page.
   $time_after = microtime(true);
+
+  // Return and nothing if cache isn't enabled
+  if (! $smconfig->get('cache', 'enabled') ) {
+    echo $filtered_buffer;
+    return;
+  }
 
   $saved_time = round($time_after - SPEEDMASTER_BUFFER_TIMESTAMP_START,3);
   $identifier = speedmaster_generate_identifier();

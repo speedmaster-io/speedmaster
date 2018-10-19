@@ -24,38 +24,39 @@ class SpeedmasterConfigLoader {
   }
 }
 
-$config = new SpeedmasterConfigLoader();
+global $smconfig;
+$smconfig = new SpeedmasterConfigLoader();
 
 define( 'SPEEDMASTER_CACHE_CONFIG', [
-  'enabled' => $config->get('cache', 'enabled', false),
-  'exclude' => $config->get('cache', 'exclude', []),
+  'enabled' => $smconfig->get('cache', 'enabled', false),
+  'exclude' => $smconfig->get('cache', 'exclude', []),
 ]);
 
 define( 'SPEEDMASTER_OPTIMIZER_CONFIG', [
-  'enabled' => $config->get('optimizer', 'enabled', false),
+  'enabled' => $smconfig->get('optimizer', 'enabled', false),
 
-  'combine_css' => $config->get('optimizer', 'combine_css', false),
-  'minify_css' => $config->get('optimizer', 'minify_css', false),
-  'exclude_css' => $config->get('optimizer', 'exclude_css', []),
+  'combine_css' => $smconfig->get('optimizer', 'combine_css', false),
+  'minify_css' => $smconfig->get('optimizer', 'minify_css', false),
+  'exclude_css' => $smconfig->get('optimizer', 'exclude_css', []),
 
-  'combine_js' => $config->get('optimizer', 'combine_js', false),
-  'minify_js' => $config->get('optimizer', 'minify_js', false),
-  'exclude_js' => $config->get('optimizer', 'exclude_js', []),
-  'footer_js' => $config->get('optimizer', 'footer_js', false),
+  'combine_js' => $smconfig->get('optimizer', 'combine_js', false),
+  'minify_js' => $smconfig->get('optimizer', 'minify_js', false),
+  'exclude_js' => $smconfig->get('optimizer', 'exclude_js', []),
+  'footer_js' => $smconfig->get('optimizer', 'footer_js', false),
 
-  'minify_html' => $config->get('optimizer', 'minify_html', false),
+  'minify_html' => $smconfig->get('optimizer', 'minify_html', false),
   
-  'disable_embed' => $config->get('optimizer', 'disable_embed', false),
+  'disable_embed' => $smconfig->get('optimizer', 'disable_embed', false),
 
   'local_url' => 'http://127.0.0.1',
 ]);
 
 define( 'SPEEDMASTER_CDN_CONFIG', [
-  'enabled' => $config->get('cdn', 'enabled', false),
-  'hosts' => $config->get('cdn', 'hosts', []),
-  'include' => $config->get('cdn', 'include', []),
-  'exclude' => $config->get('cdn', 'exclude', []),
-  'cdn_url' => $config->get('cdn', 'url', null)
+  'enabled' => $smconfig->get('cdn', 'enabled', false),
+  'hosts' => $smconfig->get('cdn', 'hosts', []),
+  'include' => $smconfig->get('cdn', 'include', []),
+  'exclude' => $smconfig->get('cdn', 'exclude', []),
+  'cdn_url' => $smconfig->get('cdn', 'url', null)
 ]);
 
 

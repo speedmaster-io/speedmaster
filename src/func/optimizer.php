@@ -1,6 +1,4 @@
 <?php
-use MatthiasMullie\Minify;
-
 function remove_ver_from_combined( $src ) {
   if ( strpos( $src, 'style.css' ) )
       $src = remove_query_arg( 'ver', $src );
@@ -114,7 +112,6 @@ function speedmaster_combine_css_and_js() {
   }
 }
 
-add_action( 'wp_enqueue_scripts', 'speedmaster_combine_css_and_js', PHP_INT_MAX );
 
 function speedmaster_minify_css_and_js() {
 
@@ -137,14 +134,7 @@ function speedmaster_minify_css_and_js() {
       return $minifier->minify();
     });
   }
-
-  if ( speedmaster_config('SPEEDMASTER_OPTIMIZER_CONFIG', 'minify_html') ) {
-    add_filter('speedmaster_buffer', function($html) {
-    
-      return minify_html($html);
-
-    });
-  }
 }
 
+add_action( 'wp_enqueue_scripts', 'speedmaster_combine_css_and_js', PHP_INT_MAX );
 add_action( 'init', 'speedmaster_minify_css_and_js', PHP_INT_MAX );
