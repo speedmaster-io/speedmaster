@@ -54,7 +54,16 @@ function combine_css() {
         $url = site_url() . $url;
       }
 
-      $content .= speedmaster_get_content($url) . "\n";
+      $new_content = speedmaster_get_content($url);
+
+      $file_name = explode('/', $url);
+      $file_name = $file_name[count($file_name) - 1];
+
+      $url_path = str_replace($file_name, '', $url);
+
+      $new_content = str_replace('../', $url_path . '../', $new_content);
+
+      $content .= $new_content . "\n";
     }
 
     $content = apply_filters('speedmaster_combined_css', $content);
@@ -73,8 +82,6 @@ function combine_css() {
     wp_enqueue_style('speedmaster', $new_url);
   }
 }
-
-
 
 function combine_js() {
   global $wp_scripts;
@@ -104,7 +111,16 @@ function combine_js() {
         $url = site_url() . $url;
       }
 
-      $content .= speedmaster_get_content($url) . "\n";
+      $new_content = speedmaster_get_content($url);
+
+      $file_name = explode('/', $url);
+      $file_name = $file_name[count($file_name) - 1];
+
+      $url_path = str_replace($file_name, '', $url);
+
+      $new_content = str_replace('../', $url_path . '../', $new_content);
+
+      $content .= $new_content . "\n";
     }
 
     $content = apply_filters('speedmaster_combined_css', $content);
