@@ -196,6 +196,11 @@ function speedmaster_admin_page() {
               <td><a href="javascript:alert('Documentation not ready yet. Feel free to contribute to our repo ;)');"><span class="dashicons dashicons-info"></span> File permissions</a></td>
             </tr>
             <tr>
+              <td>Storage file exists &amp; is writable</td>
+              <td><?php echo speedmaster_is_writable_icon(SPEEDMASTER_STORAGE_FILE); ?></td>
+              <td><a href="javascript:alert('Documentation not ready yet. Feel free to contribute to our repo ;)');"><span class="dashicons dashicons-info"></span> File permissions</a></td>
+            </tr>
+            <tr>
               <td><em>wp-config.php</em> exists &amp; is writable</td>
               <td><?php echo speedmaster_is_writable_icon(SPEEDMASTER_WP_CONFIG_FILE); ?></td>
               <td><a href="javascript:alert('Documentation not ready yet. Feel free to contribute to our repo ;)');"><span class="dashicons dashicons-info"></span> File permissions</a></td>
@@ -216,7 +221,8 @@ function speedmaster_admin_page() {
     </div>
 
     <h3>Configuration</h3>
-    <p><em>This table lists your current configuration. Changes can only be made by editing <em>speedmaster.json</em>. Read the <a href="#">configuration tutorial</a> to learn more.</em></p>
+    <p>By using JSON for settings instead of the normal WP Dashboard admin panel, we can access config data before WordPress and mySQL is loaded. Cache & optimization settings can only be made by editing the config file <code><?php echo SPEEDMASTER_CONFIG_FILE; ?></code> directly on your host via e.g. FTP or SSH. However, we recommend you to include it in your repo if you're using git.</p>
+    <p><em>This table lists your current configuration. Read the <a href="#">configuration tutorial</a> to learn more.</em></p>
     <table class="wp-list-table widefat">
       <thead>
         <tr>

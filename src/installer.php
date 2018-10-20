@@ -5,6 +5,7 @@ class SpeedMasterInstaller {
     $this->recreate_cache_dir();
 
     $this->recreate_config_file();
+    $this->recreate_storage_file();
     $this->recreate_advanced_cache_file();
     $this->update_wpconfig_var_to('true');
   }
@@ -64,6 +65,18 @@ class SpeedMasterInstaller {
     "url": "http://cdn.mywebsite.com/",
     "include": [],
     "exclude": []
+  }
+}');
+  }
+
+  private function recreate_storage_file() {
+    if (file_exists(SPEEDMASTER_STORAGE_FILE))
+      return;
+
+    @touch(SPEEDMASTER_STORAGE_FILE, 0777, true);
+    file_put_contents(SPEEDMASTER_STORAGE_FILE, '{
+  "cache": {
+    "version_tag": 0
   }
 }');
   }

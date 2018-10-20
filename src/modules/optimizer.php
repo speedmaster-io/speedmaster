@@ -33,6 +33,9 @@ class SpeedmasterOptimizer
   }
 
   public function load_css() {
+    global $smdb;
+    $version_tag = $smdb->get('cache', 'version_tag', '0');
+
     $output_urls = [];
     $urls = $this->load_urls_from_html('link', 'href', '.css');
     foreach ($urls as $url) {
@@ -40,7 +43,7 @@ class SpeedmasterOptimizer
         continue;
 
       $new_url = str_replace(site_url(), '', $url['original']);
-      $new_url = str_replace('.css', '.sm.css', $new_url);
+      $new_url = str_replace('.css', "-{$version_tag}.sm.css", $new_url);
       $identifier = speedmaster_generate_identifier($new_url);
       
       if (!speedmaster_load_buffer($identifier)) {
@@ -58,6 +61,9 @@ class SpeedmasterOptimizer
   }
 
   public function load_js() {
+    global $smdb;
+    $version_tag = $smdb->get('cache', 'version_tag', '0');
+
     $output_urls = [];
     $urls = $this->load_urls_from_html('script', 'src', '.js');
     foreach ($urls as $url) {
@@ -65,7 +71,7 @@ class SpeedmasterOptimizer
         continue;
 
       $new_url = str_replace(site_url(), '', $url['original']);
-      $new_url = str_replace('.js', '.sm.js', $new_url);
+      $new_url = str_replace('.js', "-{$version_tag}.sm.js", $new_url);
       $identifier = speedmaster_generate_identifier($new_url);
       
       if (!speedmaster_load_buffer($identifier)) {

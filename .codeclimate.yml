@@ -5,10 +5,6 @@ engines:
     config:
       languages:
         - php
-  eslint:
-    enabled: true
-    env:
-      jquery: true
   fixme:
     enabled: true
   phpcodesniffer:
@@ -17,8 +13,8 @@ engines:
       standard: "WordPress-Core"
 ratings:
   paths:
-    - "**.js"
     - "**.php"
+    - "wp-config.php"
 exclude_paths:
   - tests/**/*
   - src/lib/**/*

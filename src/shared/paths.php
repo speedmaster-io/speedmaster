@@ -21,6 +21,8 @@ if (!defined('SPEEDMASTER_CACHE_DIR'))
 if (!defined('SPEEDMASTER_CONFIG_FILE'))
   define( 'SPEEDMASTER_CONFIG_FILE', SPEEDMASTER_DATA_DIR . 'speedmaster.json');
 
+if (!defined('SPEEDMASTER_STORAGE_FILE'))
+  define( 'SPEEDMASTER_STORAGE_FILE', SPEEDMASTER_DATA_DIR . '.db.json');
 
 // Plugin directory paths
 if (!defined('SPEEDMASTER_PLUGIN_DIR'))
