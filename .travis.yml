@@ -6,7 +6,7 @@ install:
 before_script:
   - gem install mechanize
 script:
-  - docker-compose exec wp cli install --url=127.0.0.1 --title="Speedmaster Test" --admin_user=admin --admin_password=password --admin_email=info@localhost
+  - docker-compose exec wp cli install --url=127.0.0.1 --title="Speedmaster Test" --admin_user=admin --admin_password=password --admin_email=info@localhost --allow-root
   - docker-compose exec wp cli theme activate speedmaster-test --allow-root
   - docker-compose exec wp cli --info
 after_script:
