@@ -97,17 +97,20 @@ function speedmaster_load_buffer($identifier) {
 }
 
 function speedmaster_purge_buffer() {
-  if (!defined('SPEEDMASTER_CACHE') )
-    return;
+  global $smdb;
+  $smdb->increment('cache', 'version_tag');
 
   try {
     $files = speedmaster_get_cached_files(); // get all file names
+
     foreach($files as $file){ // iterate files
       unlink($file);
     }
 
     return true;
+
   } catch (Exception $e) {
+
     return false;
   }
   
