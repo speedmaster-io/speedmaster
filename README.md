@@ -71,4 +71,12 @@ A ```speedmaster.json``` file must be created in your ```SPEEDMASTER_DATA_DIR```
 ### Create a module
 You can use Wordpress filters to manipulate HTML, CSS and JS content in your module.
 
-https://github.com/speedmaster-io/speedmaster/blob/baa413ae930dd10590a88cc4f3dacab8273143f1/src/modules/optimizer/minify-css.php#L1-L18
+```php
+/*
+ * Minify CSS
+ * This function will minify all CSS files.
+*/
+add_filter('speedmaster_css', function( $css ) {
+  return my_custom_minifier($css);
+});
+```
