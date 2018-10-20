@@ -6,7 +6,8 @@
  * Version: 0.0.1
 */
 
-.glyphicon {
+.glyphicon,
+.fa-check {
   color: green;
   font-size: 30px;
 }

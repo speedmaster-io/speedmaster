@@ -11,6 +11,9 @@
         <hr>
         <strong style="color:red">This test should disappear when DOM is loaded.</strong>
       </div>
+
+      <hr>
+      <i class="fa fa-check"></i> <- That should be a large green checkmark.
       
     </div>
     <div class="col-md-6">

@@ -59,7 +59,6 @@ if (!defined('SPEEDMASTER_DISABLED')) {
 
     // Load front-end generators (functions)
     // @todo: Only load these scripts if optimizer:enabled is set to true.
-    // require_once SPEEDMASTER_FUNC_DIR . 'optimizer.php'; 
     // require_once SPEEDMASTER_FUNC_DIR . 'cdn.php';
 
     if ($smconfig->get('optimizer', 'enabled')) {
@@ -71,7 +70,6 @@ if (!defined('SPEEDMASTER_DISABLED')) {
       require_once SPEEDMASTER_MODULES_DIR . 'optimizer/minify-js.php';
       require_once SPEEDMASTER_MODULES_DIR . 'optimizer/remove-version-numbers.php';
       require_once SPEEDMASTER_MODULES_DIR . 'optimizer/combine.php';
-
     }
     
   }
