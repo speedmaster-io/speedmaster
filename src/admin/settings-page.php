@@ -8,22 +8,22 @@ function speedmaster_admin_menu() {
 function speedmaster_admin_page() {
 
   $rows = [
-    [ 
+    [
       'name' => 'Cache',
       'setting' => "cache:enabled",
       'value' => speedmaster_display_status(SPEEDMASTER_CACHE_CONFIG['enabled']),
       'tag' => 'th',
       'enabled' => SPEEDMASTER_CACHE_CONFIG['enabled']
     ],
-    [ 
+    [
       'name' => 'Exclude keywords',
       'setting' => "cache:exclude",
       'value' => speedmaster_print_array(SPEEDMASTER_CACHE_CONFIG['exclude']),
       'tag' => 'td',
       'enabled' => SPEEDMASTER_CACHE_CONFIG['enabled']
     ],
-    
-    [ 
+
+    [
       'name' => 'Optimizer',
       'setting' => "optimizer:enabled",
       'value' => speedmaster_display_status(SPEEDMASTER_OPTIMIZER_CONFIG['enabled']),
@@ -31,29 +31,29 @@ function speedmaster_admin_page() {
       'enabled' => SPEEDMASTER_OPTIMIZER_CONFIG['enabled']
     ],
 
-   [ 
+   [
       'name' => 'Minify HTML',
       'setting' => "optimizer:minify_html",
       'value' => speedmaster_display_status((SPEEDMASTER_OPTIMIZER_CONFIG['enabled'] && SPEEDMASTER_OPTIMIZER_CONFIG['minify_html'])),
       'tag' => 'td',
       'enabled' => (SPEEDMASTER_OPTIMIZER_CONFIG['enabled'] && SPEEDMASTER_OPTIMIZER_CONFIG['minify_html'])
     ],
-    
-    [ 
+
+    [
       'name' => 'Combine CSS files into one',
       'setting' => "optimizer:combine_css",
       'value' => speedmaster_display_status((SPEEDMASTER_OPTIMIZER_CONFIG['enabled'] && SPEEDMASTER_OPTIMIZER_CONFIG['combine_css'])),
       'tag' => 'td',
       'enabled' => (SPEEDMASTER_OPTIMIZER_CONFIG['enabled'] && SPEEDMASTER_OPTIMIZER_CONFIG['combine_css'])
     ],
-    [ 
+    [
       'name' => 'Minify combined CSS',
       'setting' => "optimizer:minify_css",
       'value' => speedmaster_display_status((SPEEDMASTER_OPTIMIZER_CONFIG['enabled'] && SPEEDMASTER_OPTIMIZER_CONFIG['minify_css'])),
       'tag' => 'td',
       'enabled' => (SPEEDMASTER_OPTIMIZER_CONFIG['enabled'] && SPEEDMASTER_OPTIMIZER_CONFIG['minify_css'])
     ],
-    [ 
+    [
       'name' => 'Combine JS files into one',
       'setting' => "optimizer:combine_js",
       'value' => speedmaster_display_status((SPEEDMASTER_OPTIMIZER_CONFIG['enabled'] && SPEEDMASTER_OPTIMIZER_CONFIG['combine_js'])),
@@ -61,21 +61,21 @@ function speedmaster_admin_page() {
       'enabled' => (SPEEDMASTER_OPTIMIZER_CONFIG['enabled'] && SPEEDMASTER_OPTIMIZER_CONFIG['combine_js'])
     ],
 
-    [ 
+    [
       'name' => 'Minify combibined JS files',
       'setting' => "optimizer:minify_js",
       'value' => speedmaster_display_status((SPEEDMASTER_OPTIMIZER_CONFIG['enabled'] && SPEEDMASTER_OPTIMIZER_CONFIG['minify_js'])),
       'tag' => 'td',
       'enabled' => (SPEEDMASTER_OPTIMIZER_CONFIG['enabled'] && SPEEDMASTER_OPTIMIZER_CONFIG['minify_js'])
     ],
-    [ 
+    [
       'name' => 'Load combined JS files in footer',
       'setting' => "optimizer:footer_js",
       'value' => speedmaster_display_status((SPEEDMASTER_OPTIMIZER_CONFIG['enabled'] && SPEEDMASTER_OPTIMIZER_CONFIG['footer_js'])),
       'tag' => 'td',
       'enabled' => (SPEEDMASTER_OPTIMIZER_CONFIG['enabled'] && SPEEDMASTER_OPTIMIZER_CONFIG['footer_js'])
     ],
-    [ 
+    [
       'name' => 'Disable Embed & Emojis',
       'setting' => "optimizer:disable_embed",
       'value' => speedmaster_display_status((SPEEDMASTER_OPTIMIZER_CONFIG['enabled'] && SPEEDMASTER_OPTIMIZER_CONFIG['disable_embed'])),
@@ -83,7 +83,7 @@ function speedmaster_admin_page() {
       'enabled' => (SPEEDMASTER_OPTIMIZER_CONFIG['enabled'] && SPEEDMASTER_OPTIMIZER_CONFIG['disable_embed'])
     ],
 
-    [ 
+    [
       'name' => 'Exclude CSS keywords',
       'setting' => "optimizer:exclude_css",
       'value' => speedmaster_print_array(SPEEDMASTER_OPTIMIZER_CONFIG['exclude_css']),
@@ -91,7 +91,7 @@ function speedmaster_admin_page() {
       'enabled' => (SPEEDMASTER_OPTIMIZER_CONFIG['enabled'] && SPEEDMASTER_OPTIMIZER_CONFIG['exclude_css'])
     ],
 
-    [ 
+    [
       'name' => 'Exclude JS keywords',
       'setting' => "optimizer:exclude_js",
       'value' => speedmaster_print_array(SPEEDMASTER_OPTIMIZER_CONFIG['exclude_js']),
@@ -101,35 +101,35 @@ function speedmaster_admin_page() {
 
 
 
-    [ 
+    [
       'name' => 'CDN',
       'setting' => "cdn:enabled",
       'value' => speedmaster_display_status(SPEEDMASTER_CDN_CONFIG['enabled']),
       'tag' => 'th',
       'enabled' => SPEEDMASTER_CDN_CONFIG['enabled']
     ],
-    [ 
+    [
       'name' => 'Origin URLs',
       'setting' => "cdn:hosts",
       'value' => speedmaster_print_array(SPEEDMASTER_CDN_CONFIG['hosts']),
       'tag' => 'td',
       'enabled' => SPEEDMASTER_CDN_CONFIG['enabled']
     ],
-    [ 
+    [
       'name' => 'CDN Endpoint',
       'setting' => "cdn:cdn_url",
       'value' => speedmaster_print_url(SPEEDMASTER_CDN_CONFIG['cdn_url']),
       'tag' => 'td',
       'enabled' => SPEEDMASTER_CDN_CONFIG['enabled']
     ],
-    [ 
+    [
       'name' => 'Include',
       'setting' => "cdn:include",
       'value' => speedmaster_print_array(SPEEDMASTER_CDN_CONFIG['include']),
       'tag' => 'td',
       'enabled' => SPEEDMASTER_CDN_CONFIG['enabled']
     ],
-    [ 
+    [
       'name' => 'Exclude',
       'setting' => "cdn:exclude",
       'value' => speedmaster_print_array(SPEEDMASTER_CDN_CONFIG['exclude']),
@@ -160,11 +160,11 @@ function speedmaster_admin_page() {
             </tr>
             <tr>
               <td>Cached CSS</td>
-              <td><?php echo speedmaster_display_status(count(glob(SPEEDMASTER_CACHE_DIR."*.style.css.cache")) > 0); ?></td>
+              <td><?php echo speedmaster_display_status(count(glob(SPEEDMASTER_CACHE_DIR."*.sm.css.cache")) > 0); ?></td>
             </tr>
             <tr>
               <td>Cached Javascripts</td>
-              <td><?php echo speedmaster_display_status(count(glob(SPEEDMASTER_CACHE_DIR."*.script.js.cache")) > 0); ?></td>
+              <td><?php echo speedmaster_display_status(count(glob(SPEEDMASTER_CACHE_DIR."*.sm.js.cache")) > 0); ?></td>
             </tr>
           </tbody>
         </table>
@@ -232,8 +232,8 @@ function speedmaster_admin_page() {
         </tr>
       </thead>
       <tbody>
-        <?php 
-        foreach($rows as $row): 
+        <?php
+        foreach($rows as $row):
         ?>
           <tr class="<?php echo speedmaster_setting_class($row['enabled']); ?> <?php echo $row['tag']; ?>">
             <<?php echo $row['tag']; ?>><?php echo $row['name']; ?></<?php echo $row['tag']; ?>>
