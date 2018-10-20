@@ -61,22 +61,38 @@ A ```speedmaster.json``` file must be created in your ```SPEEDMASTER_DATA_DIR```
 #### Todo
 - https://deliciousbrains.com/deploying-wordpress-plugins-travis/
 
-#### Filters
-- speedmaster_buffer
-- speemdaster_css
-- speemdaster_js
-
 ## How to
 
 ### Create a module
 You can use Wordpress filters to manipulate HTML, CSS and JS content in your module.
 
 ```php
-/*
- * Minify CSS
- * This function will minify all CSS files.
-*/
+// Minify HTML
+add_filter('speedmaster_buffer', function( $buffer ) {
+  return my_custom_minifier($buffer);
+});
+
+// Minify CSS
 add_filter('speedmaster_css', function( $css ) {
   return my_custom_minifier($css);
+});
+```
+
+#### All filters
+- speedmaster_buffer
+- speemdaster_css
+- speemdaster_js
+
+### Read config values
+You can use the global variable ```$smconfig``` to read configuration variables
+
+```php
+add_action('wp_footer', function() {
+  global $smconfig;
+
+  if ($smconfig->get('optimizer', 'disable_embed')) {
+    // Disable the wp-embed.min.js file
+    wp_dequeue_script( 'wp-embed' );
+  }
 });
 ```
