@@ -63,4 +63,12 @@ A ```speedmaster.json``` file must be created in your ```SPEEDMASTER_DATA_DIR```
 
 #### Filters
 - speedmaster_buffer
-- speemdaster_minify_css_urls
+- speemdaster_css
+- speemdaster_js
+
+## How to
+
+### Create a module
+You can use Wordpress filters to manipulate HTML, CSS and JS content in your module.
+
+https://github.com/speedmaster-io/speedmaster/blob/baa413ae930dd10590a88cc4f3dacab8273143f1/src/modules/optimizer/minify-css.php#L1-L18
