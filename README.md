@@ -32,22 +32,26 @@ A ```speedmaster.json``` file must be created in your ```SPEEDMASTER_DATA_DIR```
 ```json
 {
   "cache": {
-    "enabled": true,
+    "enabled": false,
     "exclude": []
   },
   "optimizer": {
     "enabled": true,
+
+    "minify_html": false,
+    "remove_ver": true,
+    "local_url": "http://127.0.0.1",
+    "disable_emojis": true,
+    "disable_embed": true,
+
+    "minify_css": true,
     "combine_css": false,
-    "minify_css": false,
-    "exclude_css": [],
+    "exclude_css": ["bootstrap", "font-awesome"],
 
+    "minify_js": true,
     "combine_js": false,
-    "minify_js": false,
-    "footer_js": false,
     "exclude_js": [],
-
-    "minify_html": true,
-    "disable_embed": true
+    "js_in_footer": false
   },
   "cdn": {
     "enabled": false,
