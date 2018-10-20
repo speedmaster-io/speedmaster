@@ -7,6 +7,30 @@ function speedmaster_config($constant, $var) {
     return false;
 }
 
+function speedmaster_get_content($url) {
+  global $smconfig;
+  
+  $local_url = $smconfig->get('optimizer', 'local_url', 'http://127.0.0.1');
+  
+  if ($local_url !== false) {
+    $url = str_replace(site_url(), $local_url, $url);
+  }
+
+  $response = wp_remote_get($url); 
+
+  if ( is_array( $response ) ) {
+    $header = $response['headers']; // array of http header lines
+    $body = $response['body']; // use the content
+    return $body;
+  }
+
+  if ( is_wp_error( $response ) ) {
+    return false;
+  }
+
+  return $false;
+}
+
 function speedmaster_array_match($matches, $haystack) {
   foreach ($matches as $needle) {
     if (strpos($haystack, $needle) !== false) {

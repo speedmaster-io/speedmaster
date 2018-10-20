@@ -70,6 +70,8 @@ if (!defined('SPEEDMASTER_DISABLED')) {
       require_once SPEEDMASTER_MODULES_DIR . 'optimizer/minify-css.php';
       require_once SPEEDMASTER_MODULES_DIR . 'optimizer/minify-js.php';
       require_once SPEEDMASTER_MODULES_DIR . 'optimizer/remove-version-numbers.php';
+      require_once SPEEDMASTER_MODULES_DIR . 'optimizer/combine.php';
+
     }
     
   }

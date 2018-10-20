@@ -15,15 +15,6 @@
   <link rel="profile" href="http://gmpg.org/xfn/11" />
   <link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>" />
   <?php wp_head(); ?>
-
-  <!-- External CSS loaded directly in head -->
-  <link rel="stylesheet" href="//stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-
-  <!-- Local CSS hardcoded in header.php -->
-  <link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/style.css">
-
-  <!-- Local relative CSS url hardcoded in header.php -->
-  <link rel="stylesheet" href="/wp-content/themes/speedmaster-test/assets/body-padding.css">
 </head>
 
 <body <?php body_class(); ?>>

@@ -19,7 +19,7 @@ function speedmaster_init_optimizer($buffer) {
   $files = array_merge($stylesheets, $javascripts);
 
   foreach ($files as $file) {
-    $buffer = str_replace($file['element'], $file['element_replace'], $buffer);
+    $buffer = str_replace($file['original'], $file['cached'], $buffer);
   }
 
   return $buffer;
@@ -45,7 +45,7 @@ class SpeedmasterOptimizer
       
       if (!speedmaster_load_buffer($identifier)) {
         // Download content
-        $content = file_get_contents($url['path']);
+        $content = speedmaster_get_content($url['path']);
         speedmaster_save_buffer($identifier, apply_filters('speedmaster_css', $content));
       }
 
@@ -70,7 +70,7 @@ class SpeedmasterOptimizer
       
       if (!speedmaster_load_buffer($identifier)) {
         // Download content
-        $content = file_get_contents($url['path']);
+        $content = speedmaster_get_content($url['path']);
         speedmaster_save_buffer($identifier, apply_filters('speedmaster_js', $content));
       }
       
@@ -128,7 +128,7 @@ class SpeedmasterOptimizer
 
     return [ 
       'original' => $original,
-      'path' => $local_path,
+      'path' => $url,
       'external' => $external,
       'element' => $element
     ];
