@@ -16,12 +16,10 @@ function speedmaster_init_optimizer($buffer) {
   $stylesheets = $optimizer->load_css();
   $javascripts = $optimizer->load_js();
 
-  foreach ($stylesheets as $file) {
-    $buffer = str_replace($file['original'], $file['cached'], $buffer);
-  }
+  $files = array_merge($stylesheets, $javascripts);
 
-  foreach ($javascripts as $file) {
-    $buffer = str_replace($file['original'], $file['cached'], $buffer);
+  foreach ($files as $file) {
+    $buffer = str_replace($file['element'], $file['element_replace'], $buffer);
   }
 
   return $buffer;
@@ -52,6 +50,7 @@ class SpeedmasterOptimizer
       }
 
       $url['cached'] = $new_url;
+      $url['element_replace'] = str_replace($url['original'], $new_url, $url['element']);
       $output_urls[] = $url;
     }
 
@@ -76,6 +75,7 @@ class SpeedmasterOptimizer
       }
       
       $url['cached'] = $new_url;
+      $url['element_replace'] = str_replace($url['original'], $new_url, $url['element']);
       $output_urls[] = $url;
     }
 
@@ -91,19 +91,20 @@ class SpeedmasterOptimizer
     $elements = $dom->getElementsByTagName($tag);
     foreach ($elements as $element) {
       $full_url = $element->getAttribute($attr);
+      $full_element = $dom->saveHtml($element);
       $parts = explode("?", $full_url);
       $url = $parts[0];
 
       if (! $this->ends_with($url, $ext) )
         continue;
 
-      $urls[] = $this->parse_url($full_url);
+      $urls[] = $this->parse_url($full_url, $full_element);
     }
 
     return $urls;
   }
 
-  function parse_url($url)
+  function parse_url($url, $element)
   {
     $original = $url;
     $local_path = false;
@@ -127,9 +128,9 @@ class SpeedmasterOptimizer
 
     return [ 
       'original' => $original,
-      'modified' => $url,
       'path' => $local_path,
-      'external' => $external
+      'external' => $external,
+      'element' => $element
     ];
   }
 
