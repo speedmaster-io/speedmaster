@@ -3,6 +3,7 @@ services:
   - docker
 install:
   - docker-compose up -d
+  - sleep 10
 before_script:
   - gem install mechanize
 script:
