@@ -38,8 +38,12 @@ function speedmaster_count_cached_files() {
 }
 
 // Buffer functions
-function speedmaster_generate_identifier() {
-  $string = $_SERVER['REQUEST_URI'];
+function speedmaster_generate_identifier($string = null) {
+
+  if (!$string) {
+    $string = $_SERVER['REQUEST_URI'];
+  }
+
   $string = str_replace('/', '-', $string);
   $string = str_replace('?', '-', $string);
   $string = str_replace('=', '_', $string);
@@ -50,6 +54,10 @@ function speedmaster_generate_identifier() {
 }
 
 function speedmaster_save_buffer($identifier, $buffer) {
+
+  if (!isset($buffer) or empty($buffer))
+    return;
+  
   $buffer = var_export($buffer, true);
   // HHVM fails at __set_state, so just use object cast for now
   $buffer = str_replace('stdClass::__set_state', '(object)', $buffer);

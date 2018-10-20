@@ -60,3 +60,7 @@ A ```speedmaster.json``` file must be created in your ```SPEEDMASTER_DATA_DIR```
 
 #### Todo
 - https://deliciousbrains.com/deploying-wordpress-plugins-travis/
+
+#### Filters
+- speedmaster_buffer
+- speemdaster_minify_css_urls

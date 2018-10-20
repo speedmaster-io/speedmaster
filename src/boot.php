@@ -18,14 +18,14 @@ function is_excluded_request() {
 
 $identifier = speedmaster_generate_identifier();
 
-if (strpos($identifier, '.style.css') !== false) {
+if (strpos($identifier, '.sm.css') !== false) {
   $content = speedmaster_load_buffer($identifier);
   header("Content-type: text/css");
   echo $content;
   exit();
 }
 
-if (strpos($identifier, '.script.js') !== false) {
+if (strpos($identifier, '.sm.js') !== false) {
   $content = speedmaster_load_buffer($identifier);
   header("Content-type: text/javascript");
   echo $content;

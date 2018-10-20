@@ -63,9 +63,12 @@ if (!defined('SPEEDMASTER_DISABLED')) {
     // require_once SPEEDMASTER_FUNC_DIR . 'cdn.php';
 
     if ($smconfig->get('optimizer', 'enabled')) {
-      require_once SPEEDMASTER_MODULES_DIR . 'optimizer/minify-html.php';
+      require_once SPEEDMASTER_MODULES_DIR . 'optimizer.php';
       require_once SPEEDMASTER_MODULES_DIR . 'optimizer/disable-emojis.php';
       require_once SPEEDMASTER_MODULES_DIR . 'optimizer/disable-embed.php';
+      require_once SPEEDMASTER_MODULES_DIR . 'optimizer/minify-html.php';
+      require_once SPEEDMASTER_MODULES_DIR . 'optimizer/minify-css.php';
+      require_once SPEEDMASTER_MODULES_DIR . 'optimizer/minify-js.php';
     }
     
   }
