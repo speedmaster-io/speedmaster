@@ -9,7 +9,7 @@ Text Domain: speedmaster
 */
 
 // First check if the SPEEDMASTER_DISABLED is set. If it is, we shouldn't do anything.
-if (!defined('SPEEDMASTER_DISABLED')) { 
+if (!defined('SPEEDMASTER_DISABLED')) {
 
   // Load shared classes and modules.
   require_once('shared.php');
@@ -37,7 +37,7 @@ if (!defined('SPEEDMASTER_DISABLED')) {
   }
 
   // Buffer HTML that we can filter
-  require_once( SPEEDMASTER_INC_DIR . 'buffer.php' ); 
+  require_once( SPEEDMASTER_INC_DIR . 'buffer.php' );
 
   if (speedmaster_is_logged_in() === true) {
     // Load admin panels and actions
@@ -70,8 +70,9 @@ if (!defined('SPEEDMASTER_DISABLED')) {
       require_once SPEEDMASTER_MODULES_DIR . 'optimizer/minify-js.php';
       require_once SPEEDMASTER_MODULES_DIR . 'optimizer/remove-version-numbers.php';
       require_once SPEEDMASTER_MODULES_DIR . 'optimizer/combine.php';
+      require_once SPEEDMASTER_MODULES_DIR . 'optimizer/footer-scripts.php';
     }
-    
+
   }
 
 }

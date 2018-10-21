@@ -4,7 +4,7 @@ add_action( 'wp_enqueue_scripts', 'speedmaster_combine', PHP_INT_MAX );
 /*
  * Combine CSS & JS
  * Speedmaster Optimizer
- * 
+ *
  * Combine enqueued scripts and stylesheets to one.
 */
 function speedmaster_combine() {
@@ -37,14 +37,14 @@ function combine_css() {
 
   $new_url = str_replace(site_url(), '', get_template_directory_uri() . "/combined.style.sm.css");
   $identifier = speedmaster_generate_identifier($new_url);
-  
+
   $content = null;
   if ($smconfig->get('cache', 'enabled'))
     $content = speedmaster_load_buffer($identifier);
 
-  if (!$content) { 
+  if (!$content) {
     foreach( $wp_styles->queue as $handle ) {
-      if (speedmaster_array_match($exclude, $handle)) 
+      if (speedmaster_array_match($exclude, $handle))
         continue;
 
       $url = $wp_styles->registered[$handle]->src;
@@ -73,7 +73,7 @@ function combine_css() {
 
   if ($content) {
     foreach( $wp_styles->queue as $handle ) {
-      if (speedmaster_array_match($exclude, $handle)) 
+      if (speedmaster_array_match($exclude, $handle))
         continue;
 
       wp_dequeue_style($handle);
@@ -94,14 +94,14 @@ function combine_js() {
 
   $new_url = str_replace(site_url(), '', get_template_directory_uri() . "/combined.script.sm.js");
   $identifier = speedmaster_generate_identifier($new_url);
-  
+
   $content = null;
   if ($smconfig->get('cache', 'enabled'))
     $content = speedmaster_load_buffer($identifier);
 
-  if (!$content) { 
+  if (!$content) {
     foreach( $wp_scripts->queue as $handle ) {
-      if (speedmaster_array_match($exclude, $handle)) 
+      if (speedmaster_array_match($exclude, $handle))
         continue;
 
       $url = $wp_scripts->registered[$handle]->src;
@@ -123,6 +123,10 @@ function combine_js() {
       $content .= $new_content . "\n";
     }
 
+    // Add jQuery
+    $jquery_content = speedmaster_get_content(includes_url( '/js/jquery/jquery.js' ));
+    $content = $jquery_content . "\n" . $content;
+
     $content = apply_filters('speedmaster_combined_css', $content);
 
     speedmaster_save_buffer($identifier, $content);
@@ -130,13 +134,15 @@ function combine_js() {
 
   if ($content) {
     foreach( $wp_scripts->queue as $handle ) {
-      if (speedmaster_array_match($exclude, $handle)) 
+      if (speedmaster_array_match($exclude, $handle))
         continue;
 
       wp_dequeue_script($handle);
     }
 
-    wp_enqueue_script('speedmaster', $new_url, array('jquery'), false, $smconfig->get('optimizer', 'js_in_footer', []));
+    $js_in_footer = $smconfig->get('optimizer', 'js_in_footer', false);
+    wp_enqueue_script('speedmaster', $new_url, false, false, false);
+
   }
 }
 

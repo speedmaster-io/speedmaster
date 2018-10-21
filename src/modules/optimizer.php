@@ -6,12 +6,12 @@ if ($smconfig->get('optimizer', 'enabled')) {
 
 /*
  * Speedmaster Optimizer
- * 
+ *
  * This function will buffer all css and JS files and cache them so that other modules can manipulate them.
 */
 function speedmaster_init_optimizer($buffer) {
   $optimizer = new SpeedmasterOptimizer($buffer);
-  
+
   // Optimizer functions
   $stylesheets = $optimizer->load_css();
   $javascripts = $optimizer->load_js();
@@ -45,7 +45,7 @@ class SpeedmasterOptimizer
       $new_url = str_replace(site_url(), '', $url['original']);
       $new_url = str_replace('.css', "-{$version_tag}.sm.css", $new_url);
       $identifier = speedmaster_generate_identifier($new_url);
-      
+
       if (!speedmaster_load_buffer($identifier)) {
         // Download content
         $content = speedmaster_get_content($url['path']);
@@ -73,13 +73,13 @@ class SpeedmasterOptimizer
       $new_url = str_replace(site_url(), '', $url['original']);
       $new_url = str_replace('.js', "-{$version_tag}.sm.js", $new_url);
       $identifier = speedmaster_generate_identifier($new_url);
-      
+
       if (!speedmaster_load_buffer($identifier)) {
         // Download content
         $content = speedmaster_get_content($url['path']);
         speedmaster_save_buffer($identifier, apply_filters('speedmaster_js', $content));
       }
-      
+
       $url['cached'] = $new_url;
       $url['element_replace'] = str_replace($url['original'], $new_url, $url['element']);
       $output_urls[] = $url;
@@ -132,7 +132,7 @@ class SpeedmasterOptimizer
 
     $local_path = $this->replace_url_with_src($url);
 
-    return [ 
+    return [
       'original' => $original,
       'path' => $url,
       'external' => $external,
@@ -151,7 +151,7 @@ class SpeedmasterOptimizer
     return $url;
   }
 
-  // Check if the url ends with 
+  // Check if the url ends with
   function ends_with($haystack, $needle)
   {
     $length = strlen($needle);
