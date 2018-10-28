@@ -14,10 +14,10 @@
 
       <hr>
       <i class="fa fa-check"></i> <- That should be a large green checkmark.
-      
+
     </div>
     <div class="col-md-6">
-      
+      <img src="https://cashloans.nu/wp-content/uploads/2016/03/mobillan.png" alt="">
     </div>
   </div>
 </div>

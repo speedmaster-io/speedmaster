@@ -73,6 +73,10 @@ if (!defined('SPEEDMASTER_DISABLED')) {
       require_once SPEEDMASTER_MODULES_DIR . 'optimizer/footer-scripts.php';
     }
 
+    if ($smconfig->get('cdn', 'enabled')) {
+    	require_once SPEEDMASTER_MODULES_DIR . 'cdn.php';
+    }
+
   }
 
 }
