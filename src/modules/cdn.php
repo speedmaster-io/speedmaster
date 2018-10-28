@@ -17,8 +17,8 @@ function speedmaster_cdn($buffer) {
 
   // Perform array and replace items.
   foreach ($matches as $match) {
-    $buffer = str_replace('"'.$match['find'].'"', $match['replace'], $buffer);
-    $buffer = str_replace("'".$match['find']."'", $match['replace'], $buffer);
+    $buffer = str_replace('"'.$match['find'].'"', '"'.$match['replace'].'"', $buffer);
+    $buffer = str_replace("'".$match['find']."'", "'".$match['replace']."'", $buffer);
   }
 
   return $buffer;
